@@ -1,4 +1,4 @@
-import { Entity, PrimaryColumn, Column, CreateDateColumn, UpdateDateColumn } from "typeorm"
+import { Entity, PrimaryColumn, Column, CreateDateColumn, UpdateDateColumn, Exclusion } from "typeorm"
 import { v4 as uuid } from "uuid";
 
 @Entity("users")
@@ -13,7 +13,7 @@ class User {
     @Column()
     email: string
 
-    @Column()
+    @Column({select: false})
     password: string
 
     @Column()
