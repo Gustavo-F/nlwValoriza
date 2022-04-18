@@ -1,3 +1,4 @@
+import { instanceToPlain } from "class-transformer";
 import { hash } from 'bcryptjs';
  
 import { UserRepository } from "../repositories/UserRepository";
@@ -29,7 +30,7 @@ class CreateUserService {
         });
         
         await UserRepository.save(user);
-        return user;
+        return instanceToPlain(user);
     }
 }
 
