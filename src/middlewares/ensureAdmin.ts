@@ -1,7 +1,10 @@
 import { NextFunction, Request, Response } from 'express';
 
-export function ensureAdmin(request: Request, response: Response, next: NextFunction) {
-    const admin = true;
+import { UserRepository } from '../repositories/UserRepository';
+
+export async function ensureAdmin(request: Request, response: Response, next: NextFunction) {
+    const { user_id } = request;
+    const { admin } = await UserRepository.findOneBy({id: user_id});
 
     if (admin) {
         return next();
